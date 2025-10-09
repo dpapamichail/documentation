@@ -90,7 +90,7 @@ Proceed to enter the following information in the fields:
 .. image:: salaries/new-structure.png
    :alt: New structure type form to fill out when creating a new structure type.
 
-.. _new-default-working-hours:
+.. _payroll/new-default-working-hours:
 
 New default working hours
 -------------------------
