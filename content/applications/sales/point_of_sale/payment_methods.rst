@@ -20,7 +20,8 @@ payments, or :guilabel:`Bank` to use it for card payments.
    <payment_methods/terminals>`.
 
 .. seealso::
-   :doc:`payment_methods/terminals`.
+   - :doc:`payment_methods/cash_machines`.
+   - :doc:`payment_methods/terminals`.
 
 Once the payment method is created, you can select it in your POS settings. To do so, go to the
 :ref:`POS' settings <configuration/settings>`, click :guilabel:`Edit`, and add the payment method
@@ -29,5 +30,6 @@ under the :guilabel:`Payments` section.
 .. toctree::
    :titlesonly:
 
+   payment_methods/cash_machines
    payment_methods/qr_code_payment
    payment_methods/terminals
