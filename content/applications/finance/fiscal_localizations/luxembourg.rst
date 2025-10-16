@@ -2,11 +2,12 @@
 Luxembourg
 ==========
 
-Configuration
-=============
+.. _localizations/luxembourg/modules:
 
-:ref:`Install <general/install>` the following modules to get all the features of the Luxembourgish
-localization:
+Modules
+=======
+
+The following modules are installed automatically with the Luxembourgish localization:
 
 .. list-table::
    :header-rows: 1
@@ -20,79 +21,97 @@ localization:
    * - :guilabel:`Luxembourg - Accounting Reports`
      - `l10n_lu_reports`
      - Country-specific reports
-   * - :guilabel:`Luxembourg - Annual VAT Report`
-     - `l10n_lu_reports_annual_vat`
-     - Country-specific reports
 
-.. image:: luxembourg/modules.png
-   :align: center
-   :alt: The three modules for the Luxembourgish Fiscal Localization Package on Odoo
+.. note::
+   In some cases, such as when upgrading to a version with additional modules, it is possible that
+   modules may not be installed automatically. Any missing modules can be manually :ref:`installed
+   <general/install>`.
 
-.. tip::
-   Installing the module :guilabel:`Luxembourg - Accounting Reports` installs all three modules at
-   once.
+.. _localizations/luxembourg/overview:
 
-Standard Chart of Accounts - PCN 2020
-=====================================
+Localization overview
+=====================
 
-Odoo's :ref:`fiscal localization package <fiscal_localizations/packages>` for Luxembourg includes
-the current **Standard Chart of Accounts (PCN 2020)**, effective since January 2020.
+The Luxembourgish localization includes the following features:
 
-eCDF tax return
-===============
+- :doc:`../accounting/get_started/chart_of_accounts`: a predefined set of accounts that follows the
+  current official accounting standards (PCN 2020)
+- :ref:`localizations/luxembourg/taxes`: pre-configured tax rates, including standard (17%),
+  reduced (14%, 8% and 3%) and zero-rated VAT, intra-community, and zero-rated export taxes
+- :doc:`../accounting/taxes/fiscal_positions`: automated tax adjustments based on customer or
+  supplier registration status
+- :ref:`localizations/luxembourg/e-invoicing`: E-invoicing with Peppol
+- :ref:`localizations/luxembourg/tax-reporting`: detailed overview of your VAT liability, and
+  generation of monthly and annual VAT declarations in XML format to upload to the eCDF platform
+- :ref:`localizations/luxembourg/faia`: generation of audit files in the FAIA (Luxembourgish
+  SAF-T) format
 
-Tax returns in Luxembourg require a specific XML file to upload on the eCDF.
+.. _localizations/luxembourg/taxes:
 
-To download it, go to :menuselection:`Accounting --> Report --> Audit Reports --> Tax Report`, and
-click on :guilabel:`Export eCDF declaration`.
+Taxes
+-----
+
+The following :doc:`taxes <../accounting/taxes>` are available by default with the Luxembourgish
+localization package:
+
+- standard VAT (17%): applied to most goods and services within Luxembourg
+- reduced VAT (14%, 8% and 3%): applied to some goods and services within Luxembourg
+- zero-rated VAT: applied to goods and services not subject to VAT
+- intra-community VAT: applied to goods and services sold to or purchased from VAT-registered
+  persons located in other EU countries
+- export tax (0%): zero-rated tax applied to goods and services exported outside Luxembourg
+
+.. _localizations/luxembourg/e-invoicing:
+
+E-invoicing
+-----------
+
+Odoo users in Luxembourg can register on the :ref:`accounting/e-invoicing/peppol` network, which
+allows exchanging e-invoices and credit notes with other participants on the network.
+
+E-invoicing via Peppol is mandatory for all B2G transactions in Luxembourg.
+
+The e-invoice format in Luxembourg is **BIS Billing 3.0**.
+
+.. _localizations/luxembourg/tax-reporting:
+
+Tax reporting
+=============
+
+Both monthly and annual VAT declarations can be exported as XML files to upload on the
+:abbr:`eCDF (plateforme électronique de Collecte des Données Financières)` platform.
+
+Go to :menuselection:`Accounting --> Reporting --> Statement Reports --> Tax Report`.
+
+In the :guilabel:`Report` selector, choose :guilabel:`Tax Report (LU)` to view the monthly VAT declaration, or
+:guilabel:`Annual VAT Declaration (LU)` to view the annual VAT declaration.
+
+.. note:: The Annual VAT declaration comes populated with the amounts for the
+   **simplified annual declaration**. The fields for the **complete annual declaration** are
+   available to be manually filled in if needed.
+
+Once the declaration is correct, click on :guilabel:`XML` in the cog menu to export it in XML
+format for upload to eCDF.
+
+.. image:: luxembourg/annual-tax-report.png
+   :alt: Odoo Accounting (Luxembourg localization) exports an annual VAT declaration in XML format.
 
 .. seealso::
    - :doc:`../accounting/reporting/tax_returns`
    - `Platform for electronic gathering of financial data (eCDF) <http://www.ecdf.lu>`_
 
-Annual tax report
-=================
+.. _localizations/luxembourg/faia:
 
-You can generate an XML file to electronically file your annual tax report with the tax office.
+FAIA audit file export
+======================
 
-To do so, go to :menuselection:`Accounting --> Report --> Luxembourg --> Annual Tax Report`, click
-on :guilabel:`Create`, then define the annual period in the :guilabel:`Year` field.
+**FAIA (Fichier d’Audit Informatisé AED)** is the Luxembourgish version of the SAF-T format for
+accounting data interchange. It allows exporting complete accounting data for a period from a
+taxpayer's accounting system to the tax office.
 
-The **simplified annual declaration** is automatically generated. You can manually add values in all
-the fields to get a **complete annual declaration**.
+Odoo can generate an XML file in the FAIA format that contains the entire accounting data for a
+period.
 
-.. image:: luxembourg/annual-tax-report.png
-   :align: center
-   :alt: Odoo Accounting (Luxembourg localization) generates an annual tax declaration.
-
-To help you complete it, you can use the information provided on the :guilabel:`Tax Report`. To do
-so, go to :menuselection:`Accounting --> Report --> Audit Reports --> Tax Report`, then click on the
-:guilabel:`Tax Report` dropdown menu and select the type of report you want to display.
-
-.. image:: luxembourg/tax-report-types.png
-   :align: center
-   :alt: Dropdown menu to select the type of Tax Report
-
-Finally, click on :guilabel:`Export XML` to download the XML file.
-
-.. note::
-   This feature requires the module :guilabel:`Luxembourg - Annual VAT Report` to be installed.
-
-FAIA (SAF-T)
-============
-
-**FAIA (Fichier d’Audit Informatisé AED)** is a standardized and structured file that facilitates
-the exchange of information between the taxpayers' accounting system and the tax office. It is the
-Luxembourgish version of the OECD-recommended SAF-T (Standard Audit File for Tax).
-
-Odoo can generate an XML file that contains all the content of an accounting period according to the
-rules imposed by the Luxembourg tax authorities on digital audit files.
-
-.. note::
-   This feature requires the module :guilabel:`Luxembourg - Accounting Reports` to be installed.
-
-Export FAIA file
-----------------
-
-Go to :menuselection:`Accounting --> Reporting --> Audit Reports -->  General Ledger`, then click on
-:guilabel:`FAIA`.
+Open :menuselection:`Accounting --> Reporting --> Audit Reports -->  General Ledger`, choose the
+desired period, then click on :guilabel:`Export FAIA` in the cog menu to generate and download the
+FAIA file.
