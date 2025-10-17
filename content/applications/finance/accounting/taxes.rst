@@ -87,45 +87,108 @@ Tax computation
   The tax has a fixed amount in the default currency. The amount remains the same, regardless of the
   sales price.
 
-.. example::
-   A product has a sales price of $1000, and we apply a $10 *fixed* tax. We then have:
+  .. example::
+     A product has a sales price of $1000, and we apply a $10 :guilabel:`fixed` tax. We then have:
 
-   +-------------+-------------+----------+----------+
-   | Product     | Price       | Tax      | Total    |
-   | sales price | without tax |          |          |
-   +=============+=============+==========+==========+
-   | 1,000       | 1,000       | 10       | 1,010.00 |
-   +-------------+-------------+----------+----------+
+     +-------------+-------------+----------+----------+
+     | Product     | Price       | Tax      | Total    |
+     | sales price | without tax |          |          |
+     +=============+=============+==========+==========+
+     | 1,000       | 1,000       | 10       | 1,010.00 |
+     +-------------+-------------+----------+----------+
 
 - **Percentage of price**
 
-  The *sales price* is the taxable basis: the tax amount is computed by multiplying the sales price
-  by the tax percentage.
+  The tax rate is a percentage of the **tax-excluded** subtotal.
 
-.. example::
-   A product has a sales price of $1000, and we apply a *10% of Price* tax. We then have:
+  The exact tax computation depends on the :ref:`taxes/included-in-price` field, which determines
+  whether the sales price should be treated as tax-excluded or tax-included:
 
-   +-------------+-------------+----------+----------+
-   | Product     | Price       | Tax      | Total    |
-   | sales price | without tax |          |          |
-   +=============+=============+==========+==========+
-   | 1,000       | 1,000       | 100      | 1,100.00 |
-   +-------------+-------------+----------+----------+
+  .. tabs::
+     .. tab:: Tax-excluded
+
+        If :guilabel:`Included in Price` is unchecked, the computation is :math:`\text{tax amount}
+        = \text{sales price} \times \text{tax rate}`.
+
+        .. example::
+           A product has a sales price of $1000, and we apply a 10% :guilabel:`Percentage of Price`
+           tax that is not :guilabel:`Included in Price`. We then have:
+
+           +-------------+-------------+----------+----------+
+           | Product     | Price       | Tax      | Total    |
+           | sales price | without tax |          |          |
+           +=============+=============+==========+==========+
+           | 1,000       | 1,000       | 100      | 1,100.00 |
+           +-------------+-------------+----------+----------+
+
+     .. tab:: Tax-included
+
+        If :guilabel:`Included in Price` is checked, the computation is :math:`\text{tax amount} =
+        \text{sales price} \times \frac{\text{tax rate}}{1 + \text{tax rate}}`.
+
+        .. example::
+           A product has a sales price of $1000, and we apply a 10% :guilabel:`Percentage of Price`
+           tax that is :guilabel:`Included in Price`. We then have:
+
+           +-------------+-------------+----------+----------+
+           | Product     | Price       | Tax      | Total    |
+           | sales price | without tax |          |          |
+           +=============+=============+==========+==========+
+           | 1,000       | 909.09      | 90.91    | 1,000.00 |
+           +-------------+-------------+----------+----------+
 
 - **Percentage of Price Tax Included**
 
-  The **total** is the taxable basis: the tax amount is a percentage of the total.
+  The tax rate is a percentage of the **tax-included** total.
 
-.. example::
-   A product has a Sales Price of $1000, and we apply a *10% of Price Tax Included* tax. We then
-   have:
+  The exact tax computation depends on the :ref:`taxes/included-in-price` field, which determines
+  whether the sales price should be treated as tax-excluded or tax-included:
 
-   +-------------+-------------+----------+----------+
-   | Product     | Price       | Tax      | Total    |
-   | sales price | without tax |          |          |
-   +=============+=============+==========+==========+
-   | 1,000       | 1,000       | 111.11   | 1,111.11 |
-   +-------------+-------------+----------+----------+
+  .. tabs::
+     .. tab:: Tax-excluded
+        If :guilabel:`Included in Price` is unchecked, the computation is :math:`\text{tax amount}
+        = \text{sales price} \times \frac{\text{tax rate}}{1 - \text{tax rate}}`.
+
+        .. example::
+           A product has a sales price of $1000, and we apply a 10% :guilabel:`Percentage of Price
+           Tax Included` tax that is not :guilabel:`Included in Price`. We then have:
+
+           +-------------+-------------+----------+----------+
+           | Product     | Price       | Tax      | Total    |
+           | sales price | without tax |          |          |
+           +=============+=============+==========+==========+
+           | 1,000       | 1,000       | 111.11   | 1,111.11 |
+           +-------------+-------------+----------+----------+
+
+           Note that the real tax rate in terms of the tax-excluded price is
+           :math:`\frac{111.11}{1000} = 11.111\%`.
+
+     .. tab:: Tax-included
+
+        If :guilabel:`Included in Price` is checked, the computation is :math:`\text{tax amount} =
+        \text{sales price} \times \text{tax rate}`.
+
+        .. example::
+           A product has a sales price of $1000, and we apply a 10%
+           :guilabel:`Percentage of Price Tax Included` tax that is :guilabel:`Included in Price`.
+           We then have:
+
+           +-------------+-------------+----------+----------+
+           | Product     | Price       | Tax      | Total    |
+           | sales price | without tax |          |          |
+           +=============+=============+==========+==========+
+           | 1,000       | 900         | 100      | 1,000.00 |
+           +-------------+-------------+----------+----------+
+
+           Note that the real tax rate in terms of the tax-excluded price is
+           :math:`\frac{100}{900} = 11.111\%`.
+
+  .. warning::
+     This tax computation is rarely used and only useful in countries (e.g. Brazil, Bolivia) that
+     quote tax rates as a percentage of the tax-included total.
+     For the more usual need to compute tax amounts from a tax-included price, use the
+     :guilabel:`Percentage of Price` tax computation with the :ref:`taxes/included-in-price`
+     option.
 
 - **Python code**
 
@@ -134,9 +197,9 @@ Tax computation
   :guilabel:`Python Code` defines the amount of the tax, and :guilabel:`Applicable Code` defines if
   the tax is to be applied. The formula is found at the bottom of the :guilabel:`Definition` tab.
 
-.. example::
-   :guilabel:`Python Code`: `result = price_unit * 0.10`
-   :guilabel:`Applicable Code`: `result = true`
+  .. example::
+     :guilabel:`Python Code`: `result = price_unit * 0.10`
+     :guilabel:`Applicable Code`: `result = true`
 
 .. _taxes/active:
 
@@ -256,19 +319,22 @@ invoice line.
 Included in price
 ~~~~~~~~~~~~~~~~~
 
-With this option activated, the total (including the tax) equals the **sales price**.
+With this option activated, the tax will treat the sales price on which it is applied as a total
+including the tax amount. The tax computation will split the sales price into a base amount and a
+tax amount. This makes it suitable for B2C sales in most countries where prices are quoted
+tax-inclusive.
 
 `Total = Sales Price = Computed Tax-Excluded price + Tax`
 
 .. example::
-   A product has a sales price of $1000, and we apply a *10% of Price* tax, which is *included in
-   the price*. We then have:
+   A product has a sales price of $1000, and we apply a 10% :guilabel:`Percentage of Price` tax
+   with :guilabel:`Included in Price` checked. We then have:
 
    +-------------+-------------+----------+----------+
    | Product     | Price       | Tax      | Total    |
    | sales price | without tax |          |          |
    +=============+=============+==========+==========+
-   | 1,000       | 900.10      | 90.9     | 1,000.00 |
+   | 1,000       | 909.09      | 90.91    | 1,000.00 |
    +-------------+-------------+----------+----------+
 
 .. note::
