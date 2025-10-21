@@ -17,30 +17,28 @@ To create a new contact, navigate to the :menuselection:`Contacts app`, and clic
 Contact type
 ------------
 
-Odoo allows for both :guilabel:`Individual` and :guilabel:`Company` contacts. Select either
-:guilabel:`Individual` or :guilabel:`Company`, depending on the type of contact that is being added.
+Odoo allows for both :guilabel:`Person` and :guilabel:`Company` contacts. Select either
+:guilabel:`Person` or :guilabel:`Company`, depending on the type of contact that is being added.
 
 Name
 ----
 
-First, fill in the name of the :guilabel:`Individual` or :guilabel:`Company`. This is how the name
+First, fill in the name of the :guilabel:`Person` or :guilabel:`Company`. This is how the name
 appears throughout the database. This field is **mandatory**.
 
 .. tip::
-   :guilabel:`Individual` contacts can have a :guilabel:`Company` contact linked to it. After
-   selecting :guilabel:`Individual`, a new :guilabel:`Company Name...` field appears below the
-   first name field.
+   :guilabel:`Person` contacts can have a :guilabel:`Company` contact linked to it. After selecting
+   :guilabel:`Person`, a new :guilabel:`Company Name...` field appears below the first name field.
 
 Address
 -------
 
-Next, enter the :guilabel:`Address` of the :guilabel:`Company` or :guilabel:`Individual`.
+Next, enter the :guilabel:`Address` of the :guilabel:`Company` or :guilabel:`Person`.
 
 .. tip::
-   If the :guilabel:`Individual` option is chosen, then the *type of address* can be chosen from a
+   If the :guilabel:`Person` option is chosen, then the *type of address* can be chosen from a
    drop-down menu. Options for this drop-down menu include: :guilabel:`Contact`, :guilabel:`Invoice
-   Address`, :guilabel:`Delivery Address`, :guilabel:`Other Address`, and :guilabel:`Private
-   Address`.
+   Address`, :guilabel:`Delivery Address`, and :guilabel:`Other Address`.
 
 Additional fields
 -----------------
@@ -48,10 +46,10 @@ Additional fields
 Additional details are included on the initial form. The following fields are available:
 
 - :guilabel:`VAT`: Value Added Tax number.
-- :guilabel:`Citizen Identification`: citizen or government identification number (only available
-  on :guilabel:`Individual`).
-- :guilabel:`Job Position`: list the job position of the :guilabel:`Individual` (only available on
-  :guilabel:`Individual`).
+- :guilabel:`Citizen Identification`: citizen or government identification number (only available on
+  :guilabel:`Person`).
+- :guilabel:`Job Position`: list the job position of the :guilabel:`Person` (only available on
+  :guilabel:`Person`).
 - :guilabel:`Phone`: list phone number (with country code). Make a call, send an SMS, or WhatsApp
   message by hovering over the field on the saved form, and clicking the desired option.
 - :guilabel:`Mobile`: list mobile phone number (with country code). Make a call, send an SMS, or
@@ -71,27 +69,21 @@ At the bottom of the contact form are several tabs. On the :guilabel:`Contacts &
 contacts can be added that are associated with a :guilabel:`Company` and related addresses. For
 example, a specific contact person for the company can be listed here.
 
-Multiple addresses can be added on both :guilabel:`Individual` and :guilabel:`Company` contacts. To
-do so, click :guilabel:`Add` in the :guilabel:`Contacts & Addresses` tab. Doing so reveals a
+Multiple addresses can be added on both :guilabel:`Person` and :guilabel:`Company` contacts. To do
+so, click :guilabel:`Add` in the :guilabel:`Contacts & Addresses` tab. Doing so reveals a
 :guilabel:`Create Contact` pop-up form, in which additional addresses can be configured.
 
 .. image:: contacts/contact-form-add-address.png
-   :align: center
    :alt: Add a contact/address to the contact form.
 
-On the :guilabel:`Create Contact` pop-up form, start by clicking the default :guilabel:`Other
-Address` field at the top to reveal a drop-down menu of address-related options.
-
-Select any of the following options:
+On the :guilabel:`Create Contact` pop-up form,  select one of the following options:
 
 - :guilabel:`Contact`: adds another contact to the existing contact form.
 - :guilabel:`Invoice Address`: adds a specific invoice address to the existing contact form.
 - :guilabel:`Delivery Address`: adds a specific delivery address to the existing contact form.
 - :guilabel:`Other Address`: adds an alternate address to the existing contact form.
-- :guilabel:`Private Address`: adds a private address to the existing contact form.
 
 .. image:: contacts/create-contact-window.png
-   :align: center
    :alt: Create a new contact/address on a contact form.
 
 Once an option is selected, enter the corresponding contact information that should be used for the
@@ -101,7 +93,7 @@ Add the :guilabel:`Contact Name`, :guilabel:`Address`, :guilabel:`Email`, along 
 :guilabel:`Phone` and/or :guilabel:`Mobile` numbers below.
 
 Set the :guilabel:`Job Position`, which appears if the :guilabel:`Contact` address type has been
-selected. This is similar to the :guilabel:`Individual` contact.
+selected. This is similar to the :guilabel:`Person` contact.
 
 To add a note, click on the text field next to :guilabel:`Notes`, and write anything that is
 applicable to the customer or contact.
@@ -199,8 +191,8 @@ Odoo integrates information from every single app, so there are many smart butto
    related to this customer from the *CRM* app are accessible.
 
 .. tip::
-   If the corresponding applications are installed, their related smart buttons appear
-   automatically on a contact form.
+   If the corresponding applications are installed, their related smart buttons appear automatically
+   on a contact form.
 
 A user can see any :guilabel:`Meetings`, :guilabel:`Sales`, :guilabel:`POS Orders`,
 :guilabel:`Subscriptions`, project :guilabel:`Tasks`, and the :guilabel:`More` smart button reveals
@@ -223,8 +215,8 @@ that, go to the :icon:`fa-cog` :guilabel:`Action` menu at the top of the contact
 
 Then, click :guilabel:`OK` from the resulting :guilabel:`Confirmation` pop-up window.
 
-With this contact successfully archived, as indicated by a banner at the top, they do not show up
-in the main contacts page, but they can still be searched for with the :guilabel:`Archived` filter.
+With this contact successfully archived, as indicated by a banner at the top, they do not show up in
+the main contacts page, but they can still be searched for with the :guilabel:`Archived` filter.
 
 .. tip::
    A contact can be *unarchived*, if the user decides to work with them again. To do that, just
