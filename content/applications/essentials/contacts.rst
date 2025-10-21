@@ -17,8 +17,8 @@ To create a new contact, navigate to the :menuselection:`Contacts app`, and clic
 Contact type
 ------------
 
-Odoo allows for both :guilabel:`Person` and :guilabel:`Company` contacts. Select either
-:guilabel:`Person` or :guilabel:`Company`, depending on the type of contact that is being added.
+Odoo supports both :guilabel:`Person` and :guilabel:`Company` contacts. Select the
+appropriate type for the new contact.
 
 Name
 ----
